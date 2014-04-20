@@ -66,7 +66,7 @@ public class menuInicio implements Screen {
 	public void show() {
 		//batch es la herrammienta para dibujar
 		batch = new SpriteBatch();
-		//stage sera el boton
+		//stage seran los botones
 		stage = new Stage();
 		//creo que esto le da las propiedades de los imputs (click y demas)
 		Gdx.input.setInputProcessor(stage);
@@ -111,7 +111,7 @@ public class menuInicio implements Screen {
 		//Boton para acceder al modo aventura
 		final TextButton btnModoAventura = new TextButton("Modo aventura", textButtonStyle);
 		//Aparecerá en la parte superior derecha
-		btnModoAventura.setPosition(Gdx.graphics.getWidth() - btnModoAventura.getWidth(), Gdx.graphics.getHeight() - btnModoHistoria.getHeight());
+		btnModoAventura.setPosition(Gdx.graphics.getWidth() - btnModoAventura.getWidth(), Gdx.graphics.getHeight() - btnModoAventura.getHeight());
 		stage.addActor(btnModoAventura);
 		
 		//Boton para acceder al menu de opciones
@@ -120,7 +120,7 @@ public class menuInicio implements Screen {
 		btnOpciones.setPosition(0, 0);
 		stage.addActor(btnOpciones);
 		
-		//Boton para acceder al menu de opciones
+		//Boton para salir de la aplicacion
 		final TextButton btnSalir = new TextButton("Salir", textButtonStyle);
 		//Aparecerá en la parte inferior derecha
 		btnSalir.setPosition(Gdx.graphics.getWidth() - btnSalir.getWidth(), 0);
@@ -133,14 +133,24 @@ public class menuInicio implements Screen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				// TODO Auto-generated method stub
-				btnModoHistoria.setText("Starting new game");
+				btnModoHistoria.setText("Comenzando modo historia");
 				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
 				juego.setScreen( new NivelPrueba1(juego));
 			}
 			
 		});
 		
-		
+		btnModoAventura.addListener(new ChangeListener() {
+
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				// TODO Auto-generated method stub
+				btnModoAventura.setText("Comenzando modo aventura");
+				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
+				juego.setScreen( new MenuAventura(juego));
+			}
+			
+		});
 	}
 
 	@Override
