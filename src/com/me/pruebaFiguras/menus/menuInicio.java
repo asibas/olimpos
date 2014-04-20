@@ -1,4 +1,4 @@
-package com.me.pruebaFiguras.menuInicio;
+package com.me.pruebaFiguras.menus;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -100,19 +100,40 @@ public class menuInicio implements Screen {
 		
 		skin.add("default", textButtonStyle);
 		
-		final TextButton textButton = new TextButton("PLAY", textButtonStyle);
-		textButton.setPosition(200, 200);
-		stage.addActor(textButton);
+		//Boton para acceder al modo historia
+		final TextButton btnModoHistoria = new TextButton("Modo historia", textButtonStyle);
+		//Aparecerá en la parte superior izquierda
+		btnModoHistoria.setPosition(0, Gdx.graphics.getHeight() - btnModoHistoria.getHeight());
+		stage.addActor(btnModoHistoria);
 //		stage.addActor(textButton);
 //		stage.addActor(textButton);
+		
+		//Boton para acceder al modo aventura
+		final TextButton btnModoAventura = new TextButton("Modo aventura", textButtonStyle);
+		//Aparecerá en la parte superior derecha
+		btnModoAventura.setPosition(Gdx.graphics.getWidth() - btnModoAventura.getWidth(), Gdx.graphics.getHeight() - btnModoHistoria.getHeight());
+		stage.addActor(btnModoAventura);
+		
+		//Boton para acceder al menu de opciones
+		final TextButton btnOpciones = new TextButton("Opciones", textButtonStyle);
+		//Aparecerá en la parte inferior izquierda
+		btnOpciones.setPosition(0, 0);
+		stage.addActor(btnOpciones);
+		
+		//Boton para acceder al menu de opciones
+		final TextButton btnSalir = new TextButton("Salir", textButtonStyle);
+		//Aparecerá en la parte inferior derecha
+		btnSalir.setPosition(Gdx.graphics.getWidth() - btnSalir.getWidth(), 0);
+		stage.addActor(btnSalir);
+		
 
 		//Similar a un onclick
-		textButton.addListener(new ChangeListener() {
+		btnModoHistoria.addListener(new ChangeListener() {
 
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				// TODO Auto-generated method stub
-				textButton.setText("Starting new game");
+				btnModoHistoria.setText("Starting new game");
 				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
 				juego.setScreen( new NivelPrueba1(juego));
 			}

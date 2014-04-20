@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.me.pruebaFiguras.PruebaFiguras;
-import com.me.pruebaFiguras.menuInicio.menuInicio;
+import com.me.pruebaFiguras.menus.menuInicio;
 
 /**
  * Splash screen inicial para antes de llegar al menu.
