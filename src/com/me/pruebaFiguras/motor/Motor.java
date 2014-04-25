@@ -50,7 +50,11 @@ public class Motor {
 				figuraSeleccionada.setPosX(Gdx.input.getX());
 				//Elevamos la figura para evitar taparla con el dedo
 				figuraSeleccionada.setPosY(Gdx.input.getY() + 10);
+				
+				evitarSobrepasarBordes(figuraSeleccionada);
 			}
+			
+			
 		}//En caso de que la pantalla no sea tocada
 		else {
 			//Se deja de tener seleccionada la figura pasando el valor a null
@@ -58,7 +62,31 @@ public class Motor {
 		}
 		/* Es decir: 
 		 * desde que se toca una figura se considerara que esta seleccionada 
-		 * asta que se deje de tocar la pantalla.
+		 * hasta que se deje de tocar la pantalla.
 		 */
+		
+		
+	}
+	
+	public void dibujar(){
+		
+	}
+	/**
+	 * Funcion para evitar que la figura seleccionada sobrepase los bordes de la pantalla.
+	 * Evitando asi perder la figura mas haya de esta.
+	 * @param figura
+	 */
+	private void evitarSobrepasarBordes(Figura figura){
+		if (figura.getPosX() < 0)
+			figura.setPosX(0);
+			
+		if(figura.getPosX() + (64 * figura.getMedida()) > Gdx.graphics.getWidth())//juego.w)
+			figura.setPosX(Gdx.graphics.getWidth() - (64 * figura.getMedida()));
+		
+		if(figura.getPosY() < 0)
+			figura.setPosY(0);
+			
+		if (figura.getPosY() + (64 * figura.getMedida()) > Gdx.graphics.getHeight())//juego.h)
+			figura.setPosY(Gdx.graphics.getHeight() - (164 * figura.getMedida()));
 	}
 }
