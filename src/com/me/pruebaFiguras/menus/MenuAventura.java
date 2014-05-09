@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.me.pruebaFiguras.NivelPrueba1;
 import com.me.pruebaFiguras.PruebaFiguras;
+import com.me.pruebaFiguras.nivelesFormas.NivelFormasPrueba1;
 
 /**
  * Screen que mostrará el menu para elegir el tipo de juego en el modo aventura
@@ -126,7 +127,7 @@ public class MenuAventura implements Screen {
 				// TODO Auto-generated method stub
 				btnAvenFormas.setText("Starting new game");
 				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
-				juego.setScreen( new NivelPrueba1(juego));
+				juego.setScreen( new NivelFormasPrueba1(juego));
 			}
 			
 		});

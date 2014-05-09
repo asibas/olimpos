@@ -12,6 +12,7 @@ public class Figura {
 	private int medida;//tamanio de la figura, que he pensado que deberia haber 3 o 4 tamanios diferentes
 	private float grados;//para girar la figura
 	private Color color;//color de la figura
+	private boolean encajado;//indica si la pieza a sido encajada en su propio hueco
 	/*
 	 * para el tipo de figura he usado una clase de tipo enum, 
 	 * que funcionan un poco como una serie de opciones estaticas.
@@ -51,6 +52,7 @@ public class Figura {
 		this.grados = grados;
 		this.color = color;
 		this.tipoFigura = tipoFigura;
+		encajado = false;
 	}
 	
 	/**
@@ -68,6 +70,7 @@ public class Figura {
 		this.grados = 0;
 		this.color = color;
 		this.tipoFigura = tipoFigura;
+		encajado = false;
 	}
 	
 	/**
@@ -84,6 +87,7 @@ public class Figura {
 		this.grados = 0;
 		this.color = color;
 		this.tipoFigura = tipoFigura;
+		encajado = false;
 	}
 	
 	/**
@@ -99,6 +103,7 @@ public class Figura {
 		this.grados = 0;
 		this.color = Color.BLUE;
 		this.tipoFigura = tipoFigura;
+		encajado = false;
 	}
 	
 	/**
@@ -112,6 +117,7 @@ public class Figura {
 		grados = figura.getGrados();
 		color = figura.getColor();
 		this.tipoFigura = figura.getTipoFigura();
+		encajado = false;
 	}
 	//Fin constructores
 	
@@ -152,7 +158,15 @@ public class Figura {
 	public void setTipoFigura(TipoFigura tipoFigura) {
 		this.tipoFigura = tipoFigura;
 	}
+	public boolean isEncajado() {
+		return encajado;
+	}
+	public void setEncajado(boolean encajado) {
+		this.encajado = encajado;
+	}
 	//Fin getters y setters
+
+	
 
 	//Este metodo se usara cuando se detecte que se a tocado la pantalla
 	//comprobaremos si la figura a sido pulsada
@@ -169,9 +183,16 @@ public class Figura {
 		//Para dar un margen de error en la pulsacion
 		switch(this.tipoFigura){
 			case CUADRADO: 
-				if(x < this.posX + (64 * this.medida) &&
+				System.out.println("Es cuadrado");
+				System.out.println("zona tocada: x = " + x + "; y = " + y);
+				System.out.println("Lados del cuadrado:");
+				System.out.println("Superior: " + (this.posY + (64* this.medida)));
+				System.out.println("derecha: " + this.posX + ((64* this.medida)));
+				System.out.println("izquierda: " + this.posX);
+				System.out.println("Inferior: " + this.posY);
+				if(x < (this.posX + (64 * this.medida)) &&
 					x > this.posX &&
-					y < this.posY + (64 * this.medida) &&
+					y < (this.posY + (64 * this.medida)) &&
 					y > this.posY)
 					return true;
 				else

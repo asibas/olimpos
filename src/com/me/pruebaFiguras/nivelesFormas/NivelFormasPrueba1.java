@@ -15,7 +15,7 @@ import com.me.pruebaFiguras.PruebaFiguras;
 import com.me.pruebaFiguras.Figura.TipoFigura;
 import com.me.pruebaFiguras.motor.Motor;
 
-public class nivelFormasPrueba1 implements Screen {
+public class NivelFormasPrueba1 implements Screen {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private ShapeRenderer shrend;
@@ -23,7 +23,7 @@ public class nivelFormasPrueba1 implements Screen {
 	public PruebaFiguras juego;
 	private Motor motor;
 	
-	public nivelFormasPrueba1(PruebaFiguras juego){
+	public NivelFormasPrueba1(PruebaFiguras juego){
 		this.juego = juego;
 		motor = new Motor();
 	}
@@ -37,8 +37,10 @@ public class nivelFormasPrueba1 implements Screen {
 		//esto creo que es para ajustar el batch a la camara
 		batch.setProjectionMatrix(camera.combined);
 		
-		//si tocamos la pantalla
+		//Calculamos todos los cambios
 		motor.actualizarEstado();
+		//Dibujamos
+		motor.dibujar(shrend, batch);
 		
 		//Inicio comprobacion de cubo con bordes (para que no desaparezca por las esquinas)
 //		if (cuadrado.getPosX() < 0)
@@ -55,43 +57,43 @@ public class nivelFormasPrueba1 implements Screen {
 			
 		//Fin de comprobacion de cubo con bordes
 		
-		//Se empieza a dibujar
-		batch.begin();
-		//fuente por defecto en color negro
-		BitmapFont font = new BitmapFont();
-		font.setColor(Color.BLACK);
-		
-		//mostrar posicion X e Y de donde se a pulsado
-		font.draw(batch, "X=" + Gdx.input.getX() + ", Y=" + Gdx.input.getY(), 10, 20);
-		
-		//Dibujamos el hueco donde hay que insertar el cubo
-		//shrend es la herramienta para dibujar formas
-		//queremos dibujar relleno
-		shrend.begin(ShapeType.Filled);
-		//del color de la propiedad del objeto hueco
-		shrend.setColor(hueco.getColor());
-		//dibujamos un rectangulo
-		shrend.rect(hueco.getPosX(), hueco.getPosY(), 68 * hueco.getMedida(), 68 * hueco.getMedida());
-		//acabamos con el hueco y se dibuja
-		shrend.end();
-		
-		//Dibujamos el cubo
-		//relleno
-		shrend.begin(ShapeType.Filled);
-		// color
-		shrend.setColor(cuadrado.getColor());
-		//rectangulo
-		shrend.rect(cuadrado.getPosX(), cuadrado.getPosY(), 64 * cuadrado.getMedida(), 64 * cuadrado.getMedida());
-		//dibujar
-		shrend.end();
-		
-		//En caso de que se inserte el cubo
-		if (hueco.isInside(cuadrado)){
-			//Se escribe bien echo
-			font.draw(batch, "Bien echo", 50, 50);
-		}
-		//fin del batch y se dibuja creo(la posicion de click y el texto "bien echo" si se da la condicion.
-		batch.end();
+//		//Se empieza a dibujar
+//		batch.begin();
+//		//fuente por defecto en color negro
+//		BitmapFont font = new BitmapFont();
+//		font.setColor(Color.BLACK);
+//		
+//		//mostrar posicion X e Y de donde se a pulsado
+//		font.draw(batch, "X=" + Gdx.input.getX() + ", Y=" + Gdx.input.getY(), 10, 20);
+//		
+//		//Dibujamos el hueco donde hay que insertar el cubo
+//		//shrend es la herramienta para dibujar formas
+//		//queremos dibujar relleno
+//		shrend.begin(ShapeType.Filled);
+//		//del color de la propiedad del objeto hueco
+//		shrend.setColor(hueco.getColor());
+//		//dibujamos un rectangulo
+//		shrend.rect(hueco.getPosX(), hueco.getPosY(), 68 * hueco.getMedida(), 68 * hueco.getMedida());
+//		//acabamos con el hueco y se dibuja
+//		shrend.end();
+//		
+//		//Dibujamos el cubo
+//		//relleno
+//		shrend.begin(ShapeType.Filled);
+//		// color
+//		shrend.setColor(cuadrado.getColor());
+//		//rectangulo
+//		shrend.rect(cuadrado.getPosX(), cuadrado.getPosY(), 64 * cuadrado.getMedida(), 64 * cuadrado.getMedida());
+//		//dibujar
+//		shrend.end();
+//		
+//		//En caso de que se inserte el cubo
+//		if (hueco.isInside(cuadrado)){
+//			//Se escribe bien echo
+//			font.draw(batch, "Bien echo", 50, 50);
+//		}
+//		//fin del batch y se dibuja creo(la posicion de click y el texto "bien echo" si se da la condicion.
+//		batch.end();
 	}
 
 	@Override
