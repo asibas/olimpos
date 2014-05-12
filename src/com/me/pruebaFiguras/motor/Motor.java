@@ -65,7 +65,8 @@ public class Motor {
 			}
 			if (figuraSeleccionada != null){//En caso de que la figura ya este seleccionada
 				//Le cambiamos la posicion
-				figuraSeleccionada.setPosX(Gdx.input.getX());
+				//Colocamos el centro horizontal del cuadrado donde hemos pulsado
+				figuraSeleccionada.setPosX(Gdx.input.getX() - (32 * figuraSeleccionada.getMedida()));
 				//Elevamos la figura para evitar taparla con el dedo
 				figuraSeleccionada.setPosY(posY + 10);
 				
