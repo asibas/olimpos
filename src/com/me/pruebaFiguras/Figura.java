@@ -198,7 +198,10 @@ public class Figura {
 				else
 					return false;
 			case CIRCULO: 
-				return false;
+				if (Math.sqrt(Math.pow(x - this.getPosX(),2) + Math.pow(y - this.getPosY(), 2)) <= 5)
+					return true;
+				else
+					return false;
 			case ROMBO:
 				return false;
 			case ESTRELLA: 

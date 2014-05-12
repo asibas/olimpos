@@ -37,12 +37,13 @@ public class Motor {
 		System.out.println("Dentro de funcion figuraTocada");
 		for (Figura figura: figuras){
 			System.out.println("Analizando figura");
-			if (figura.isTouched(posX, posY)){
-				return figura;
+			//Si la figura no esta encajada y esta siendo pulsada
+			if (!figura.isEncajado() && figura.isTouched(posX, posY)){
+				return figura;//Se retorna la figura
 			}
 		}
 		System.out.println("figuraTocada retorna null");
-		return null;
+		return null;//En caso de no haber pulsado ninguna figura se retorna null
 	}
 	
 	/**
@@ -74,7 +75,12 @@ public class Motor {
 				
 				//Comprobar si la figura encaja en el hueco
 				for(HuecoFigura hueco: huecos)
-					figuraSeleccionada.setEncajado(comprobarIncrustado(figuraSeleccionada, hueco));
+					if (comprobarIncrustado(figuraSeleccionada, hueco)){
+						//marcamos como encajada
+						figuraSeleccionada.setEncajado(true);
+						//Deseleccionamos la figura para evitar seguir moviendola
+						figuraSeleccionada = null;
+					}
 				
 				//Comprobar si todos los casos han sido incrustados para determinar el fin del juego
 				finDeJuego = true;
@@ -104,9 +110,10 @@ public class Motor {
 		//fuente por defecto en color negro
 		BitmapFont font = new BitmapFont();
 		font.setColor(Color.BLACK);
+		font.setScale(4);
 		
 		//mostrar posicion X e Y de donde se a pulsado
-		font.draw(batch, "X=" + Gdx.input.getX() + ", Y=" + Gdx.input.getY(), 10, 20);
+		//font.draw(batch, "X=" + Gdx.input.getX() + ", Y=" + Gdx.input.getY(), 10, 20);
 		
 		//Dibujamos los huecos
 		for(HuecoFigura hueco: huecos)
@@ -116,9 +123,16 @@ public class Motor {
 			shrend.begin(ShapeType.Filled);
 			//del color de la propiedad del objeto hueco
 			shrend.setColor(hueco.getColor());
-			//dibujamos un rectangulo
-			shrend.rect(hueco.getPosX(), hueco.getPosY(), 68 * hueco.getMedida(), 68 * hueco.getMedida());
-			//acabamos con el hueco y se dibuja
+			switch(hueco.getTipoFigura()){
+			case CUADRADO:
+				shrend.rect(hueco.getPosX(), hueco.getPosY(), 68 * hueco.getMedida(), 68 * hueco.getMedida());
+				break;
+			case CIRCULO:
+				shrend.circle(hueco.getPosX(), hueco.getPosY(), 34 * hueco.getMedida());
+				break;
+			default:
+				shrend.rect(hueco.getPosX(), hueco.getPosY(), 68 * hueco.getMedida(), 68 * hueco.getMedida());
+			}
 			shrend.end();
 		}
 		
@@ -129,8 +143,17 @@ public class Motor {
 			shrend.begin(ShapeType.Filled);
 			// color
 			shrend.setColor(figura.getColor());
-			//rectangulo
-			shrend.rect(figura.getPosX(), figura.getPosY(), 64 * figura.getMedida(), 64 * figura.getMedida());
+			switch (figura.getTipoFigura()){
+			case CUADRADO:
+				shrend.rect(figura.getPosX(), figura.getPosY(), 64 * figura.getMedida(), 64 * figura.getMedida());
+				break;
+			case CIRCULO:
+				shrend.circle(figura.getPosX(), figura.getPosY(), 32 * figura.getMedida());
+				break;
+			default:
+				shrend.rect(figura.getPosX(), figura.getPosY(), 64 * figura.getMedida(), 64 * figura.getMedida());
+			}
+			
 			//dibujar
 			shrend.end();
 		}
@@ -138,7 +161,8 @@ public class Motor {
 		//En caso de fin de juego
 		if (finDeJuego){
 			//Se escribe bien echo
-			font.draw(batch, "Bien echo", 50, 50);
+			font.draw(batch, "Bien echo", Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/2);
+			
 		}
 		//fin del batch y se dibuja creo(la posicion de click y el texto "bien echo" si se da la condicion.
 		batch.end();
