@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Color;
  *
  */
 public class Figura {
-	private float posX, posY; //posicion de de la figura
+	private float posX, posY; //posicion centrica de la figura
 	private int medida;//tamanio de la figura, que he pensado que deberia haber 3 o 4 tamanios diferentes
 	private float grados;//para girar la figura
 	private Color color;//color de la figura
@@ -42,13 +42,13 @@ public class Figura {
 	 * @param posY posicion Y de la figura en juego
 	 * @param tipoFigura la forma de la figura
 	 * @param color color de la figura
-	 * @param medida tamanio de la figura
+	 * @param medida tamanio de la figura: 1 = 
 	 * @param grados inclinacion de la figura sobre su propio eje central
 	 */
 	public Figura(float posX, float posY, TipoFigura tipoFigura, Color color, int medida, float grados) {
 		this.posX = posX;
 		this.posY = posY;
-		this.medida = medida;
+		this.medida = medida * 16;
 		this.grados = grados;
 		this.color = color;
 		this.tipoFigura = tipoFigura;
@@ -66,7 +66,7 @@ public class Figura {
 	public Figura(float posX, float posY, TipoFigura tipoFigura, Color color, int medida) {
 		this.posX = posX;
 		this.posY = posY;
-		this.medida = medida;
+		this.medida = medida * 16;
 		this.grados = 0;
 		this.color = color;
 		this.tipoFigura = tipoFigura;
@@ -74,7 +74,7 @@ public class Figura {
 	}
 	
 	/**
-	 * constructor que deja los grados por defecto en 0 y la medida en 1
+	 * constructor que deja los grados por defecto en 0 y la medida en 2
 	 * @param posX posicion X de la figura en juego
 	 * @param posY posicion Y de la figura en juego
 	 * @param tipoFigura la forma de la figura
@@ -83,7 +83,7 @@ public class Figura {
 	public Figura(float posX, float posY, TipoFigura tipoFigura, Color color) {
 		this.posX = posX;
 		this.posY = posY;
-		this.medida = 1;
+		this.medida = 32;
 		this.grados = 0;
 		this.color = color;
 		this.tipoFigura = tipoFigura;
@@ -91,7 +91,7 @@ public class Figura {
 	}
 	
 	/**
-	 * constructor que deja los grados por defecto en 0, la medida en 1 y el color azul
+	 * constructor que deja los grados por defecto en 0, la medida en 2 y el color azul
 	 * @param posX posicion X de la figura en juego
 	 * @param posY posicion Y de la figura en juego
 	 * @param tipoFigura la forma de la figura
@@ -99,7 +99,7 @@ public class Figura {
 	public Figura(float posX, float posY, TipoFigura tipoFigura) {
 		this.posX = posX;
 		this.posY = posY;
-		this.medida = 1;
+		this.medida = 32;
 		this.grados = 0;
 		this.color = Color.BLUE;
 		this.tipoFigura = tipoFigura;
@@ -185,20 +185,16 @@ public class Figura {
 			case CUADRADO: 
 				System.out.println("Es cuadrado");
 				System.out.println("zona tocada: x = " + x + "; y = " + y);
-				System.out.println("Lados del cuadrado:");
-				System.out.println("Superior: " + (this.posY + (64* this.medida)));
-				System.out.println("derecha: " + this.posX + ((64* this.medida)));
-				System.out.println("izquierda: " + this.posX);
-				System.out.println("Inferior: " + this.posY);
-				if(x < (this.posX + (64 * this.medida)) &&
-					x > this.posX &&
-					y < (this.posY + (64 * this.medida)) &&
-					y > this.posY)
+				if(x < this.posX +  this.medida &&
+					x > this.posX - this.medida &&
+					y < this.posY + this.medida &&
+					y > this.posY - this.medida)
 					return true;
 				else
 					return false;
 			case CIRCULO: 
-				if (Math.sqrt(Math.pow(x - this.getPosX(),2) + Math.pow(y - this.getPosY(), 2)) <= 5)
+				double hipotenusa = Math.sqrt(Math.pow(x - this.getPosX(),2) + Math.pow(y - this.getPosY(), 2));
+				if (hipotenusa >= 0 && hipotenusa <= 32 + this.getMedida())
 					return true;
 				else
 					return false;

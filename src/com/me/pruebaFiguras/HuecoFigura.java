@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Color;
  *
  */
 public class HuecoFigura extends Figura {
-
+	private int margen = 2;//margen entre la figura y su hueco
 	/**
 	 * Constructor para la clase HuecoFigura
 	 * @param posX posicion X de la clase
@@ -21,6 +21,8 @@ public class HuecoFigura extends Figura {
 		this.setColor(Color.GRAY);
 		this.setPosX(posX);
 		this.setPosY(posY);
+		//sumamos 2 para que haya un margen entre la figura y su hueco
+		this.setMedida(this.getMedida() + margen);
 	}
 	
 	/**
@@ -30,10 +32,11 @@ public class HuecoFigura extends Figura {
 	 * @return true si se encuentra dentro del hueco, false si aun no se encuentra dentro del hueco
 	 */
 	public boolean isInside(Figura figura){
-		if(figura.getPosX() >= this.getPosX() &&
-			(figura.getPosX() + (64 * figura.getMedida())) < (this.getPosX() + (68 * this.getMedida())) &&
-			figura.getPosY() > this.getPosY() &&
-			(figura.getPosY() + (64 * figura.getMedida())) < (this.getPosY() + (68 * this.getMedida()))){
+		System.out.println("figura = null?: " + figura == null);
+		if(	figura.getPosX() >= this.getPosX() - margen &&
+			figura.getPosX() <= this.getPosX() + margen &&
+			figura.getPosY() >= this.getPosY() - margen &&
+			figura.getPosY() <= this.getPosY() + margen){
 			return true;
 		}else{
 			return false;

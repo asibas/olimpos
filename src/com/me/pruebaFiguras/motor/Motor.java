@@ -67,20 +67,23 @@ public class Motor {
 			if (figuraSeleccionada != null){//En caso de que la figura ya este seleccionada
 				//Le cambiamos la posicion
 				//Colocamos el centro horizontal del cuadrado donde hemos pulsado
-				figuraSeleccionada.setPosX(Gdx.input.getX() - (32 * figuraSeleccionada.getMedida()));
+				figuraSeleccionada.setPosX(Gdx.input.getX());
 				//Elevamos la figura para evitar taparla con el dedo
-				figuraSeleccionada.setPosY(posY + 10);
+				figuraSeleccionada.setPosY(posY + figuraSeleccionada.getMedida());
 				
 				evitarSobrepasarBordes(figuraSeleccionada);
 				
 				//Comprobar si la figura encaja en el hueco
 				for(HuecoFigura hueco: huecos)
+				{
+					System.out.println("figuraSeleccionada = null?: " + figuraSeleccionada == null);
 					if (comprobarIncrustado(figuraSeleccionada, hueco)){
 						//marcamos como encajada
 						figuraSeleccionada.setEncajado(true);
 						//Deseleccionamos la figura para evitar seguir moviendola
 						figuraSeleccionada = null;
 					}
+				}
 				
 				//Comprobar si todos los casos han sido incrustados para determinar el fin del juego
 				finDeJuego = true;
@@ -125,13 +128,13 @@ public class Motor {
 			shrend.setColor(hueco.getColor());
 			switch(hueco.getTipoFigura()){
 			case CUADRADO:
-				shrend.rect(hueco.getPosX(), hueco.getPosY(), 68 * hueco.getMedida(), 68 * hueco.getMedida());
+				shrend.rect(hueco.getPosX() - hueco.getMedida(), hueco.getPosY() - hueco.getMedida(), hueco.getMedida() * 2, hueco.getMedida() * 2);
 				break;
 			case CIRCULO:
-				shrend.circle(hueco.getPosX(), hueco.getPosY(), 34 * hueco.getMedida());
+				shrend.circle(hueco.getPosX(), hueco.getPosY(), hueco.getMedida());
 				break;
 			default:
-				shrend.rect(hueco.getPosX(), hueco.getPosY(), 68 * hueco.getMedida(), 68 * hueco.getMedida());
+				shrend.rect(hueco.getPosX() - hueco.getMedida(), hueco.getPosY() - hueco.getMedida(), hueco.getMedida() * 2, hueco.getMedida() * 2);
 			}
 			shrend.end();
 		}
@@ -145,13 +148,13 @@ public class Motor {
 			shrend.setColor(figura.getColor());
 			switch (figura.getTipoFigura()){
 			case CUADRADO:
-				shrend.rect(figura.getPosX(), figura.getPosY(), 64 * figura.getMedida(), 64 * figura.getMedida());
+				shrend.rect(figura.getPosX() - figura.getMedida(), figura.getPosY() - figura.getMedida(), figura.getMedida() * 2, figura.getMedida() * 2);
 				break;
 			case CIRCULO:
-				shrend.circle(figura.getPosX(), figura.getPosY(), 32 * figura.getMedida());
+				shrend.circle(figura.getPosX(), figura.getPosY(),figura.getMedida());
 				break;
 			default:
-				shrend.rect(figura.getPosX(), figura.getPosY(), 64 * figura.getMedida(), 64 * figura.getMedida());
+				shrend.rect(figura.getPosX() - figura.getMedida(), figura.getPosY() - figura.getMedida(), figura.getMedida() * 2, figura.getMedida() * 2);
 			}
 			
 			//dibujar
@@ -173,20 +176,27 @@ public class Motor {
 	 * @param figura
 	 */
 	private void evitarSobrepasarBordes(Figura figura){
-		if (figura.getPosX() < 0)
-			figura.setPosX(0);
+		if (figura.getPosX() - figura.getMedida() < 0)
+		{
+			System.out.println("Recolocando a la izquierda: " + (figura.getPosX() - figura.getMedida()));
+			System.out.println("figura.getPosX = " + figura.getPosX());
+			System.out.println("figura.getMedida = " + figura.getMedida());
+			figura.setPosX(figura.getMedida());
+		}
 			
-		if(figura.getPosX() + (64 * figura.getMedida()) > Gdx.graphics.getWidth())//juego.w)
-			figura.setPosX(Gdx.graphics.getWidth() - (64 * figura.getMedida()));
+			
+		if(figura.getPosX() + figura.getMedida() > Gdx.graphics.getWidth())//juego.w)
+			figura.setPosX(Gdx.graphics.getWidth() - figura.getMedida());
 		
 		if(figura.getPosY() < 0)
-			figura.setPosY(0);
+			figura.setPosY(figura.getMedida());
 			
-		if (figura.getPosY() + (64 * figura.getMedida()) > Gdx.graphics.getHeight())//juego.h)
-			figura.setPosY(Gdx.graphics.getHeight() - (164 * figura.getMedida()));
+		if (figura.getPosY() + figura.getMedida() > Gdx.graphics.getHeight())//juego.h)
+			figura.setPosY(Gdx.graphics.getHeight() - figura.getMedida());
 	}
 	
 	private boolean comprobarIncrustado(Figura figura, HuecoFigura hueco){
+		System.out.println("figura = null?: " + figura == null);
 		//En caso de que se inserte el cubo
 		if (hueco.isInside(figura)){
 			return true;
