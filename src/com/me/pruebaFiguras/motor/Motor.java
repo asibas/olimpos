@@ -79,6 +79,9 @@ public class Motor {
 					if (comprobarIncrustado(figuraSeleccionada, hueco)){
 						//marcamos como encajada
 						figuraSeleccionada.setEncajado(true);
+						//centramos la figura en el hueco
+						figuraSeleccionada.setPosX(hueco.getPosX());
+						figuraSeleccionada.setPosY(hueco.getPosY());
 						
 					}
 				}
