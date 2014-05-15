@@ -18,7 +18,7 @@ public class HuecoFigura extends Figura {
 	 */
 	public HuecoFigura(float posX, float posY, Figura figura) {
 		super(figura);
-		this.setColor(Color.GRAY);
+		//this.setColor(Color.GRAY);
 		this.setPosX(posX);
 		this.setPosY(posY);
 		//sumamos 2 para que haya un margen entre la figura y su hueco

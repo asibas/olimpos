@@ -129,6 +129,23 @@ public class Motor {
 			//queremos dibujar relleno
 			shrend.begin(ShapeType.Filled);
 			//del color de la propiedad del objeto hueco
+			shrend.setColor(Color.GRAY);
+			shrend.
+			switch(hueco.getTipoFigura()){
+			case CUADRADO:
+				shrend.rect(hueco.getPosX() - hueco.getMedida(), hueco.getPosY() - hueco.getMedida(), hueco.getMedida() * 2, hueco.getMedida() * 2);
+				break;
+			case CIRCULO:
+				shrend.circle(hueco.getPosX(), hueco.getPosY(), hueco.getMedida());
+				break;
+			default:
+				shrend.rect(hueco.getPosX() - hueco.getMedida(), hueco.getPosY() - hueco.getMedida(), hueco.getMedida() * 2, hueco.getMedida() * 2);
+			}
+			shrend.end();
+			
+			//Bordes
+			shrend.begin(ShapeType.Line);
+			//del color de la propiedad del objeto hueco
 			shrend.setColor(hueco.getColor());
 			switch(hueco.getTipoFigura()){
 			case CUADRADO:
