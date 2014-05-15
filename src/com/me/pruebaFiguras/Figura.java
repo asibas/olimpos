@@ -185,7 +185,7 @@ public class Figura {
 			case CUADRADO: 
 				System.out.println("Es cuadrado");
 				System.out.println("zona tocada: x = " + x + "; y = " + y);
-				if(x < this.posX +  this.medida &&
+				if(	x < this.posX +  this.medida &&
 					x > this.posX - this.medida &&
 					y < this.posY + this.medida &&
 					y > this.posY - this.medida)

@@ -76,14 +76,15 @@ public class Motor {
 				//Comprobar si la figura encaja en el hueco
 				for(HuecoFigura hueco: huecos)
 				{
-					System.out.println("figuraSeleccionada = null?: " + figuraSeleccionada == null);
 					if (comprobarIncrustado(figuraSeleccionada, hueco)){
 						//marcamos como encajada
 						figuraSeleccionada.setEncajado(true);
-						//Deseleccionamos la figura para evitar seguir moviendola
-						figuraSeleccionada = null;
+						
 					}
 				}
+				//Si la figura a sido encajada deseleccionamos la figura para evitar seguir moviendola
+				if (figuraSeleccionada.isEncajado())
+					figuraSeleccionada = null;
 				
 				//Comprobar si todos los casos han sido incrustados para determinar el fin del juego
 				finDeJuego = true;
@@ -196,7 +197,6 @@ public class Motor {
 	}
 	
 	private boolean comprobarIncrustado(Figura figura, HuecoFigura hueco){
-		System.out.println("figura = null?: " + figura == null);
 		//En caso de que se inserte el cubo
 		if (hueco.isInside(figura)){
 			return true;

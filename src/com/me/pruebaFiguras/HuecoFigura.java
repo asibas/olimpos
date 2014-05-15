@@ -32,8 +32,8 @@ public class HuecoFigura extends Figura {
 	 * @return true si se encuentra dentro del hueco, false si aun no se encuentra dentro del hueco
 	 */
 	public boolean isInside(Figura figura){
-		System.out.println("figura = null?: " + figura == null);
-		if(	figura.getPosX() >= this.getPosX() - margen &&
+		if(	figura.getTipoFigura().equals(this.getTipoFigura()) &&
+			figura.getPosX() >= this.getPosX() - margen &&
 			figura.getPosX() <= this.getPosX() + margen &&
 			figura.getPosY() >= this.getPosY() - margen &&
 			figura.getPosY() <= this.getPosY() + margen){
