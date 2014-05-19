@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.me.pruebaFiguras.NivelPrueba1;
 import com.me.pruebaFiguras.PruebaFiguras;
 import com.me.pruebaFiguras.nivelesFormas.NivelFormasPrueba1;
+import com.me.pruebaFiguras.nivelesFormas.NivelFormasPrueba2;
 
 /**
  * Screen que mostrará el menu para elegir el tipo de juego en el modo aventura
@@ -29,6 +30,7 @@ import com.me.pruebaFiguras.nivelesFormas.NivelFormasPrueba1;
 public class MenuAventura implements Screen {
 	private SpriteBatch batch;
 	private PruebaFiguras juego;
+	private MenuAventura menu;
 	private Stage stage;
 	private Skin skin;
 	
@@ -38,6 +40,7 @@ public class MenuAventura implements Screen {
 	 */
 	public MenuAventura(PruebaFiguras juego){
 		this.juego = juego;
+		this.menu = this;
 	}
 	
 	@Override

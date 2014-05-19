@@ -16,7 +16,7 @@ import com.me.pruebaFiguras.Figura.TipoFigura;
 import com.me.pruebaFiguras.menus.MenuAventura;
 import com.me.pruebaFiguras.motor.Motor;
 
-public class NivelFormasPrueba1 implements Screen {
+public class NivelFormasPrueba2 implements Screen {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private ShapeRenderer shrend;
@@ -24,7 +24,7 @@ public class NivelFormasPrueba1 implements Screen {
 	public PruebaFiguras juego;
 	private Motor motor;
 	
-	public NivelFormasPrueba1(PruebaFiguras juego){
+	public NivelFormasPrueba2(PruebaFiguras juego){
 		this.juego = juego;
 		motor = new Motor();
 	}
@@ -109,11 +109,11 @@ public class NivelFormasPrueba1 implements Screen {
 		juego.w = Gdx.graphics.getWidth();
 		juego.h = Gdx.graphics.getHeight();
 		
-		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 50, TipoFigura.CUADRADO, Color.GREEN));
-		motor.agregarHueco(new HuecoFigura(50, 50, new Figura(10, 10, TipoFigura.CUADRADO, Color.GREEN)));
+		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 50, TipoFigura.CIRCULO, Color.GREEN));
+		motor.agregarHueco(new HuecoFigura(50, 50, new Figura(10, 10, TipoFigura.CIRCULO, Color.GREEN)));
 		
-		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 200, TipoFigura.CIRCULO, Color.GREEN));
-		motor.agregarHueco(new HuecoFigura(50, 200, new Figura(100, 200, TipoFigura.CIRCULO, Color.GREEN)));
+		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 200, TipoFigura.CIRCULO, Color.BLUE));
+		motor.agregarHueco(new HuecoFigura(50, 200, new Figura(100, 200, TipoFigura.CIRCULO, Color.BLUE)));
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, juego.w, juego.h);
 		

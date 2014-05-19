@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,18 +12,24 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.me.pruebaFiguras.Figura;
 import com.me.pruebaFiguras.HuecoFigura;
+import com.me.pruebaFiguras.PruebaFiguras;
+import com.me.pruebaFiguras.nivelesFormas.NivelFormasPrueba2;
 
 public class Motor {
+	private int nivel;
 	private List<Figura> figuras;
 	private List<HuecoFigura> huecos;
 	private Figura figuraSeleccionada;
 	
 	private boolean finDeJuego;
 	
+	private Screen siguienteNivel;
+	
 	public Motor(){
 		figuras = new ArrayList<>();
 		huecos = new ArrayList<>();
 		finDeJuego = false;
+		nivel = 1;
 	}
 	
 	public void agregarFigura(Figura figura){
@@ -49,7 +56,7 @@ public class Motor {
 	/**
 	 * Esta funcion comprobara todos los cambios que se haran antes de renderizar.
 	 */
-	public void actualizarEstado(){
+	public void actualizarEstado(PruebaFiguras juego){
 		int posY;
 		//Si la pantalla es tocada
 		if (Gdx.input.isTouched()){
@@ -108,7 +115,14 @@ public class Motor {
 		 * desde que se toca una figura se considerara que esta seleccionada 
 		 * hasta que se deje de tocar la pantalla.
 		 */
-		
+		if (finDeJuego && Gdx.input.isTouched()){
+			System.out.println("fin de juego");
+			nivel++;
+			switch(nivel){
+			case 2:  siguienteNivel = new NivelFormasPrueba2(juego);
+			}
+			juego.setScreen(siguienteNivel);
+		}
 		
 	}
 	
@@ -130,7 +144,6 @@ public class Motor {
 			shrend.begin(ShapeType.Filled);
 			//del color de la propiedad del objeto hueco
 			shrend.setColor(Color.GRAY);
-			shrend.
 			switch(hueco.getTipoFigura()){
 			case CUADRADO:
 				shrend.rect(hueco.getPosX() - hueco.getMedida(), hueco.getPosY() - hueco.getMedida(), hueco.getMedida() * 2, hueco.getMedida() * 2);
@@ -218,7 +231,7 @@ public class Motor {
 	
 	private boolean comprobarIncrustado(Figura figura, HuecoFigura hueco){
 		//En caso de que se inserte el cubo
-		if (hueco.isInside(figura)){
+		if (hueco.getColor().equals(figura.getColor()) && hueco.isInside(figura)){
 			return true;
 		}
 		return false;
