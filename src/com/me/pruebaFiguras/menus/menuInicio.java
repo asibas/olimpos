@@ -101,7 +101,7 @@ public class menuInicio implements Screen {
 		skin.add("default", textButtonStyle);
 		
 		//Boton para acceder al modo historia
-		final TextButton btnModoHistoria = new TextButton("Modo historia", textButtonStyle);
+		final TextButton btnModoHistoria = new TextButton("Historia", textButtonStyle);
 		//Aparecerá en la parte superior izquierda
 		btnModoHistoria.setPosition(0, Gdx.graphics.getHeight() - btnModoHistoria.getHeight());
 		stage.addActor(btnModoHistoria);
@@ -109,7 +109,7 @@ public class menuInicio implements Screen {
 //		stage.addActor(textButton);
 		
 		//Boton para acceder al modo aventura
-		final TextButton btnModoAventura = new TextButton("Modo aventura", textButtonStyle);
+		final TextButton btnModoAventura = new TextButton("Aventura", textButtonStyle);
 		//Aparecerá en la parte superior derecha
 		btnModoAventura.setPosition(Gdx.graphics.getWidth() - btnModoAventura.getWidth(), Gdx.graphics.getHeight() - btnModoAventura.getHeight());
 		stage.addActor(btnModoAventura);
@@ -148,6 +148,30 @@ public class menuInicio implements Screen {
 				btnModoAventura.setText("Comenzando modo aventura");
 				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
 				juego.setScreen( new MenuAventura(juego));
+			}
+			
+		});
+		
+		btnOpciones.addListener(new ChangeListener(){
+
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				// TODO Auto-generated method stub
+				btnOpciones.setText("Cargando opciones...");
+				//Se cierra la aplicacion para liberar memoria. Aunque aqui cargariamos opciones varias.
+				Gdx.app.exit();
+			}
+			
+		});
+		
+		btnSalir.addListener(new ChangeListener(){
+
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				// TODO Auto-generated method stub
+				btnSalir.setText("Saliendo de Olimpos");
+				//Se cierra la aplicacion para liberar memoria.
+				Gdx.app.exit();
 			}
 			
 		});
