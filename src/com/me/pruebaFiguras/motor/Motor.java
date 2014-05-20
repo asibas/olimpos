@@ -198,7 +198,7 @@ public class Motor {
 		//En caso de fin de juego
 		if (finDeJuego){
 			//Se escribe bien echo
-			font.draw(batch, "Bien echo", Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/2);
+			font.draw(batch, "Bien hecho", Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/2);
 			
 		}
 		//fin del batch y se dibuja creo(la posicion de click y el texto "bien echo" si se da la condicion.
