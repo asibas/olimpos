@@ -33,6 +33,7 @@ public class NivelFormasPrueba2 implements Screen {
 		//Limpieza de pantalla
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glLineWidth(3);
 		//Fin de limpieza de pantalla
 		
 		//esto creo que es para ajustar el batch a la camara
