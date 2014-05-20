@@ -115,7 +115,7 @@ public class Motor {
 		 * desde que se toca una figura se considerara que esta seleccionada 
 		 * hasta que se deje de tocar la pantalla.
 		 */
-		if (finDeJuego && Gdx.input.isTouched()){
+		if (finDeJuego && Gdx.input.justTouched()){
 			System.out.println("fin de juego");
 			nivel++;
 			switch(nivel){
