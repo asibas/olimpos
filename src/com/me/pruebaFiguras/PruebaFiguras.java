@@ -30,7 +30,7 @@ public class PruebaFiguras extends Game {
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 
-		pJuego = new NivelPrueba1(this);
+		//pJuego = new NivelPrueba1(this);
 		//llamamos a la pantalla que seria el splash screen
 		this.setScreen(new SplashScreenInicio(this));
 	}
@@ -40,6 +40,6 @@ public class PruebaFiguras extends Game {
 	 */
 	@Override
 	public void dispose() {
-		pJuego.dispose();
+		//pJuego.dispose();
 	}
 }
