@@ -67,7 +67,7 @@ public class SplashScreenInicio implements Screen{
 	public void show() {
 		batch = new SpriteBatch();
 		
-		splash = new Texture(Gdx.files.internal("data/start.PNG"));
+		splash = new Texture(Gdx.files.internal("data/OlimposScreen.png"));
 		tiempoInicio = TimeUtils.millis();
 	}
 
