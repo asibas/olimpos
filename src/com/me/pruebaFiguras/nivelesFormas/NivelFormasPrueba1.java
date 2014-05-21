@@ -110,11 +110,11 @@ public class NivelFormasPrueba1 implements Screen {
 		juego.w = Gdx.graphics.getWidth();
 		juego.h = Gdx.graphics.getHeight();
 		
-		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 50, TipoFigura.CUADRADO, Color.GREEN));
-		motor.agregarHueco(new HuecoFigura(50, 50, new Figura(10, 10, TipoFigura.CUADRADO, Color.GREEN)));
+		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 50, TipoFigura.CUADRADO, Color.RED));
+		motor.agregarHueco(new HuecoFigura(50, 50, new Figura(10, 10, TipoFigura.CUADRADO, Color.RED)));
 		
-		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 200, TipoFigura.CIRCULO, Color.GREEN));
-		motor.agregarHueco(new HuecoFigura(50, 200, new Figura(100, 200, TipoFigura.CIRCULO, Color.GREEN)));
+		motor.agregarFigura(new Figura(Gdx.graphics.getWidth() - 100, 200, TipoFigura.CIRCULO, Color.BLUE));
+		motor.agregarHueco(new HuecoFigura(50, 200, new Figura(100, 200, TipoFigura.CIRCULO, Color.BLUE)));
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, juego.w, juego.h);
 		

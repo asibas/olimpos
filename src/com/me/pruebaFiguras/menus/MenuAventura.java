@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.me.pruebaFiguras.NivelPrueba1;
 import com.me.pruebaFiguras.PruebaFiguras;
+import com.me.pruebaFiguras.nivelesColores.NivelColoresPrueba1;
 import com.me.pruebaFiguras.nivelesFormas.NivelFormasPrueba1;
 import com.me.pruebaFiguras.nivelesFormas.NivelFormasPrueba2;
 
@@ -123,6 +124,20 @@ public class MenuAventura implements Screen {
 		
 
 		//Similar a un onclick
+		//Colores
+		btnAvenColores.addListener(new ChangeListener() {
+
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				// TODO Auto-generated method stub
+				btnAvenColores.setText("Starting new game");
+				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
+				juego.setScreen( new NivelColoresPrueba1(juego));
+			}
+			
+		});
+		
+		//Formas
 		btnAvenFormas.addListener(new ChangeListener() {
 
 			@Override
@@ -131,6 +146,32 @@ public class MenuAventura implements Screen {
 				btnAvenFormas.setText("Starting new game");
 				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
 				juego.setScreen( new NivelFormasPrueba1(juego));
+			}
+			
+		});
+		
+		//Sumas
+		btnAvenSumas.addListener(new ChangeListener() {
+
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				// TODO Auto-generated method stub
+				btnAvenSumas.setText("Starting new game");
+				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
+				//juego.setScreen( new NivelFormasPrueba1(juego));
+			}
+			
+		});
+		
+		//Logica
+		btnAvenLogica.addListener(new ChangeListener() {
+
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				// TODO Auto-generated method stub
+				btnAvenLogica.setText("Starting new game");
+				//Se carga la primera pantalla ( aun que estaria bien cargar un menu de niveles para elejir uno)
+				//juego.setScreen( new NivelFormasPrueba1(juego));
 			}
 			
 		});
