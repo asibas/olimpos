@@ -30,6 +30,7 @@ public class NivelColoresPrueba1 implements Screen {
 	}
 	@Override
 	public void render(float delta) {
+        
 		//Limpieza de pantalla
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
